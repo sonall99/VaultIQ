@@ -1,0 +1,5 @@
+# Environment variables
+.env
+.env.local
+Backend/.env
+Frontend/.env

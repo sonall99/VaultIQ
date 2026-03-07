@@ -1,0 +1,21 @@
+# VaultIQ Backend Dependencies
+# Install: pip install -r requirements.txt
+
+# ── Web Framework ─────────────────────────────────────────
+fastapi==0.115.0
+uvicorn[standard]==0.30.0      # ASGI server to run FastAPI
+
+# ── AI / Gemini ───────────────────────────────────────────
+google-generativeai==0.8.0     # Gemini API + text-embedding-004
+
+# ── Database ──────────────────────────────────────────────
+supabase==2.7.0                # Supabase Python client
+
+# ── File Parsing ──────────────────────────────────────────
+PyMuPDF==1.24.0                # PDF parsing (fitz)
+python-docx==1.1.0             # DOCX parsing
+
+# ── Utilities ─────────────────────────────────────────────
+python-dotenv==1.0.0           # Load .env file
+python-multipart==0.0.9        # Required for FastAPI file uploads
+pydantic==2.8.0                # Request/response validation (FastAPI uses this)
