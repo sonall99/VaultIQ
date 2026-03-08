@@ -1,6 +1,3 @@
-// src/lib/gemini.js
-// API calls to FastAPI backend with timeout + retry wrappers
-
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
 const DEFAULT_TIMEOUT_MS = 45000;
 
@@ -40,13 +37,16 @@ async function fetchWithRetry(url, options = {}, retries = 2, timeoutMs = DEFAUL
 }
 
 export async function checkBackendHealth() {
-  try {
-    const res = await fetchWithTimeout(`${BACKEND_URL}/health`, {}, 8000);
-    return res.ok;
-  } catch {
-    return false;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await fetchWithTimeout(`${BACKEND_URL}/health`, {}, 15000);
+      if (res.ok) return true;
+    } catch {}
+    if (attempt < 2) await new Promise(r => setTimeout(r, 1200 * (attempt + 1)));
   }
+  return false;
 }
+
 
 export async function ingestDocument(docId, title, content) {
   const res = await fetchWithRetry(`${BACKEND_URL}/ingest`, {
