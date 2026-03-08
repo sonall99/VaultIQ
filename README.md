@@ -32,19 +32,20 @@
 **Type:** B2B SaaS  
 **Clients:** Banks, payment processors, financial service providers
 
-VaultIQ is a fictional fintech infrastructure platform that helps banks and financial institutions securely manage sensitive financial data, automate compliance workflows, and monitor operational risk. The platform provides tools for encryption management, audit logging, regulatory reporting, and vendor risk assessment — used by 200+ enterprise clients across 14 countries.
+NovaBank is a fictional fintech infrastructure platform that helps banks and financial institutions securely manage sensitive financial data, automate compliance workflows, and monitor operational risk. The platform provides tools for encryption management, audit logging, regulatory reporting, and vendor risk assessment — used by 200+ enterprise clients across 14 countries.
 
 ---
 
 ## What I Built
 
-VaultIQ — A full-stack AI application that automates the completion of vendor security questionnaires. Instead of a compliance officer spending hours manually answering the same questions across every client engagement, VaultIQ's tool:
+VaultIQ — A full-stack production-grade RAG (Retrieval-Augmented Generation) application that automates the completion of vendor security questionnaires. Instead of a compliance officer spending hours manually answering the same questions across every client engagement, VaultIQ's tool:
 
-1. Parses any uploaded questionnaire into individual questions
-2. Retrieves the most relevant chunks from reference documents using semantic search (RAG)
-3. Sends grounded context to an LLM that generates precise, cited answers
-4. Allows reviewing, editing, and regenerating individual answers
-5. Exports a clean, structured document ready to send
+1. **Embeds** all company reference documents into a vector store at ingestion time
+2. **Retrieves** the most semantically relevant chunks at query time using cosine similarity
+3. **Augments** the LLM prompt with only the retrieved, verified context
+4. **Generates** a grounded answer that cites the exact source document it drew from
+
+This means every answer is **traceable, verifiable, and hallucination-resistant** — not a guess.
 
 ---
 
@@ -167,7 +168,7 @@ DOCUMENT INGESTION                      QUERY TIME
 | Original question order preserved | ✅ |
 | Citations included in export | ✅ |
 
-### Nice-to-Have (All 5 implemented)
+### Extra Features
 
 | Feature | Status |
 |---|---|
@@ -176,6 +177,23 @@ DOCUMENT INGESTION                      QUERY TIME
 | Partial Regeneration | ✅ Regenerate any single question |
 | Version History | ✅ All runs saved to Supabase |
 | Coverage Summary | ✅ Answered / Not Found / Flagged stats |
+
+---
+## Tech Stack
+
+| Layer | Technology | Reason |
+|---|---|---|
+| Frontend | React + Vite | Fast builds, component model |
+| Styling | CSS Variables + DM Sans | Custom light theme, no UI library dependency |
+| Auth | Supabase Auth | JWT sessions, email/password out of the box |
+| Database | Supabase PostgreSQL | Managed Postgres with pgvector extension |
+| Vector Search | pgvector cosine similarity | Runs inside Postgres, no extra infrastructure |
+| Embeddings | Google text-embedding-004 | 768-dim, strong retrieval quality |
+| LLM | Groq — llama-3.3-70b-versatile | Free tier, fast inference, JSON output |
+| Backend | FastAPI + Python | Async, typed, auto-docs at /docs |
+| File Parsing | PyMuPDF + python-docx | Server-side PDF and DOCX parsing |
+| Frontend Deploy | Vercel | Zero-config deployment from GitHub |
+| Backend Deploy | Render | Docker-free Python hosting |
 
 ---
 
@@ -208,25 +226,6 @@ DOCUMENT INGESTION                      QUERY TIME
 9.  What monitoring systems are used to detect security incidents?
 10. What uptime SLA does VaultIQ guarantee for enterprise customers?
 ```
-
----
-
-## Tech Stack
-
-| Layer | Technology | Reason |
-|---|---|---|
-| Frontend | React + Vite | Fast builds, component model |
-| Styling | CSS Variables + DM Sans | Custom light theme, no UI library dependency |
-| Auth | Supabase Auth | JWT sessions, email/password out of the box |
-| Database | Supabase PostgreSQL | Managed Postgres with pgvector extension |
-| Vector Search | pgvector cosine similarity | Runs inside Postgres, no extra infrastructure |
-| Embeddings | Google text-embedding-004 | 768-dim, strong retrieval quality |
-| LLM | Groq — llama-3.3-70b-versatile | Free tier, fast inference, JSON output |
-| Backend | FastAPI + Python | Async, typed, auto-docs at /docs |
-| File Parsing | PyMuPDF + python-docx | Server-side PDF and DOCX parsing |
-| Frontend Deploy | Vercel | Zero-config deployment from GitHub |
-| Backend Deploy | Render | Docker-free Python hosting |
-
 ---
 
 ## Trade-offs
