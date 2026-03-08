@@ -825,21 +825,45 @@ export default function Dashboard({ user }) {
 
   // On mount: health check + ingest demo docs
   useEffect(() => {
-    (async () => {
-      const online = await checkBackendHealth();
-      setBackendOnline(online);
-      if (!online) return;
-      for (const doc of DEMO_DOCS) {
-        setIngestStatus(s => ({ ...s, [doc.id]: "ingesting" }));
-        try {
-          await ingestDocument(doc.id, doc.title, doc.content);
-          setIngestStatus(s => ({ ...s, [doc.id]: "done" }));
-        } catch {
-          setIngestStatus(s => ({ ...s, [doc.id]: "error" }));
-        }
+  let intervalId = null;
+  let cancelled = false;
+  let bootstrapped = false;
+
+  const ingestDemoDocs = async () => {
+    if (bootstrapped) return;
+    bootstrapped = true;
+    for (const doc of DEMO_DOCS) {
+      setIngestStatus(s => ({ ...s, [doc.id]: "ingesting" }));
+      try {
+        await ingestDocument(doc.id, doc.title, doc.content);
+        if (!cancelled) setIngestStatus(s => ({ ...s, [doc.id]: "done" }));
+      } catch {
+        if (!cancelled) setIngestStatus(s => ({ ...s, [doc.id]: "error" }));
       }
-    })();
-  }, []);
+    }
+  };
+
+  const checkAndInit = async () => {
+    const online = await checkBackendHealth();
+    if (cancelled) return;
+    setBackendOnline(online);
+    if (online) {
+      if (intervalId) clearInterval(intervalId);
+      intervalId = null;
+      await ingestDemoDocs();
+    }
+  };
+
+  checkAndInit();
+
+  intervalId = setInterval(checkAndInit, 15000);
+
+  return () => {
+    cancelled = true;
+    if (intervalId) clearInterval(intervalId);
+  };
+}, []);
+
 
   useEffect(() => {
     if (tab === "history")   getRuns().then(v => setVersions(v||[])).catch(()=>{});
@@ -1142,7 +1166,7 @@ export default function Dashboard({ user }) {
                   </div>
                   {!backendOnline && (
                     <div style={{fontSize:12,color:"var(--red)",display:"flex",alignItems:"center",gap:6,marginTop:4}}>
-                      <span>⚠</span> Backend offline — file upload requires FastAPI on port 8000
+                      <span>⚠</span> Backend Loading — refresh in 15–30s while server wakes up
                     </div>
                   )}
                 </div>
@@ -1287,7 +1311,7 @@ export default function Dashboard({ user }) {
                 <div className="card" style={{marginBottom:16}}>
                   <div className="card-title"><IconZap size={14} color="var(--acc-h)"/>Pre-flight</div>
                   {[
-                    { label:"Backend online",       ok:backendOnline===true, detail: backendOnline===null?"Checking…":backendOnline?"FastAPI on :8000":"Run: uvicorn main:app --reload" },
+                    { label:"Backend online", ok:backendOnline===true, detail: backendOnline===null?"Checking…":backendOnline?"Backend reachable":"Waiting for backend wake-up" },
                     { label:"Documents indexed",    ok:doneCount>0, detail:`${doneCount} / ${docs.length} docs in pgvector` },
                     { label:"Questions loaded",     ok:questions.length>0, detail:questions.length>0?`${questions.length} questions ready`:"Go to Questionnaire tab" },
                   ].map(item=>(
