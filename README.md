@@ -24,6 +24,7 @@
 </p>
 
 -----
+</div>
 
 ## Company Overview
 
