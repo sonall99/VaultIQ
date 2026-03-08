@@ -1,11 +1,27 @@
-<img width="815" height="83" alt="image" src="https://github.com/user-attachments/assets/b449e1dd-d670-425a-bed0-2c736effe978" /><div align="center">
+<div align="center">
 
 # 🏦 VaultIQ
 ### AI-Powered Vendor Questionnaire Answering Tool
 
-| 🚀 Live App | 📡 Backend API | 📖 API Docs | 💻 GitHub |
-|:-----------:|:--------------:|:-----------:|:---------:|
-| [vault-iq-sand.vercel.app](https://vault-iq-sand.vercel.app) | [vaultiq-1-j7qn.onrender.com](https://vaultiq-1-j7qn.onrender.com) | [/docs](https://vaultiq-1-j7qn.onrender.com/docs) | [sonall99/VaultIQ](https://github.com/sonall99/VaultIQ) |
+<p align="center">
+
+<a href="https://vault-iq-sand.vercel.app">
+  <img src="https://img.shields.io/badge/🌐_Live_App-VaultIQ-blue?style=for-the-badge">
+</a>
+
+<a href="https://vaultiq-1-j7qn.onrender.com">
+  <img src="https://img.shields.io/badge/⚙️_Backend_API-Render-green?style=for-the-badge">
+</a>
+
+<a href="https://vaultiq-1-j7qn.onrender.com/docs">
+  <img src="https://img.shields.io/badge/📘_API_Docs-FastAPI-orange?style=for-the-badge">
+</a>
+
+<a href="https://github.com/sonall99/VaultIQ">
+  <img src="https://img.shields.io/badge/💻_GitHub-Repository-black?style=for-the-badge">
+</a>
+
+</p>
 
 **Upload a questionnaire → AI answers from your reference docs → Export in seconds**
 
