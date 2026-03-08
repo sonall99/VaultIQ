@@ -13,7 +13,7 @@
 **Upload a questionnaire → AI answers from your reference docs → Export in seconds**
 
 [🚀 Live Demo](https://vault-iq-sand.vercel.app/) • [📡 API Docs](https://vaultiq-1-j7qn.onrender.com/docs) • [💻 GitHub](https://github.com/sonall99/VaultIQ)
-/div>
+</div>
 
 # VaultIQ — AI-Powered Questionnaire Answering Tool
 
