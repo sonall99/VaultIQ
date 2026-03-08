@@ -12,9 +12,9 @@
 
 **Upload a questionnaire → AI answers from your reference docs → Export in seconds**
 
-> 🏦 **Fictional Company Context:** VaultIQ is an imaginary FinTech company that helps banks store and manage sensitive financial data securely. It is used here as the demo scenario — the reference documents, sample questionnaire, and AI answers are all based on VaultIQ as a pretend vendor being evaluated by a bank.
+[🚀 Live Demo](https://vault-iq-sand.vercel.app/) • [📡 API Docs](https://vaultiq-1-j7qn.onrender.com/docs) • [💻 GitHub](https://github.com/sonall99/VaultIQ)
+/div>
 
-[🚀 Live Demo](https://vault-iq-sand.vercel.app) • [📡 API Docs](https://vaultiq-1-j7qn.onrender.com/docs) • [💻 GitHub](https://github.com/sonall99/VaultIQ)
 # VaultIQ — AI-Powered Questionnaire Answering Tool
 
 > AI-powered vendor questionnaire automation for FinTech compliance teams.  
