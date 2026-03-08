@@ -6,7 +6,7 @@
 <p align="center">
 
 <a href="https://vault-iq-sand.vercel.app">
-  <img src="https://img.shields.io/badge/🌐_Live_App-VaultIQ-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/🌐_Live_Link-Click-blue?style=for-the-badge">
 </a>
 
 <a href="https://vaultiq-1-j7qn.onrender.com">
@@ -23,27 +23,7 @@
 
 </p>
 
-**Upload a questionnaire → AI answers from your reference docs → Export in seconds**
-
-[🚀 Live Demo](https://vault-iq-sand.vercel.app/) • [📡 API Docs](https://vaultiq-1-j7qn.onrender.com/docs) • [💻 GitHub](https://github.com/sonall99/VaultIQ)
-</div>
-
-# VaultIQ — AI-Powered Questionnaire Answering Tool
-
-> AI-powered vendor questionnaire automation for FinTech compliance teams.  
-> Upload a questionnaire → ground answers in reference docs → export a complete, cited response document in seconds.
-
----
-## Links
-
-| | |
-|---|---|
-| **Live App** | https://vault-iq-sand.vercel.app |
-| **Backend API** | https://vaultiq-1-j7qn.onrender.com |
-| **API Docs** | https://vaultiq-1-j7qn.onrender.com/docs |
-| **GitHub** | https://github.com/sonall99/VaultIQ |
-
-------
+-----
 
 ## Company Overview
 
@@ -51,13 +31,13 @@
 **Type:** B2B SaaS  
 **Clients:** Banks, payment processors, financial service providers
 
-VaultIQ is a fintech infrastructure platform that helps banks and financial institutions securely manage sensitive financial data, automate compliance workflows, and monitor operational risk. The platform provides tools for encryption management, audit logging, regulatory reporting, and vendor risk assessment — used by 200+ enterprise clients across 14 countries.
+FunBank is a fictional fintech infrastructure platform that helps banks and financial institutions securely manage sensitive financial data, automate compliance workflows, and monitor operational risk. The platform provides tools for encryption management, audit logging, regulatory reporting, and vendor risk assessment — used by 200+ enterprise clients across 14 countries.
 
 ---
 
 ## What I Built
 
-A full-stack AI application that automates the completion of vendor security questionnaires. Instead of a compliance officer spending hours manually answering the same questions across every client engagement, VaultIQ's tool:
+VaultIQ- A full-stack AI application that automates the completion of vendor security questionnaires. Instead of a compliance officer spending hours manually answering the same questions across every client engagement, VaultIQ's tool:
 
 1. Parses any uploaded questionnaire into individual questions
 2. Retrieves the most relevant chunks from reference documents using semantic search (RAG)
