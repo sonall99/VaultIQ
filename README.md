@@ -57,7 +57,7 @@ VaultIQ- A full-stack AI application that automates the completion of vendor sec
 │                        USER BROWSER                             │
 │                                                                 │
 │   ┌──────────────┐    ┌──────────────┐    ┌──────────────────┐  │
-│   │  Auth Screen │───▶│  Dashboard   │───▶│  Review & Export │  │
+│   │  Auth Screen │───▶│  Dashboard   │───▶│  Review & Export │ │
 │   │  (Supabase)  │    │  (React UI)  │    │  (Edit + DOCX)   │  │
 │   └──────────────┘    └──────┬───────┘    └──────────────────┘  │
 └──────────────────────────────│──────────────────────────────────┘
@@ -81,7 +81,7 @@ VaultIQ- A full-stack AI application that automates the completion of vendor sec
              │
              ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                 SUPABASE (PostgreSQL + pgvector)                 │
+│                 SUPABASE (PostgreSQL + pgvector)                │
 │                                                                 │
 │   document_chunks      profiles        questionnaires           │
 │   ┌──────────────┐    ┌──────────┐    ┌─────────────────────┐   │
@@ -104,7 +104,7 @@ VaultIQ- A full-stack AI application that automates the completion of vendor sec
              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │           GOOGLE AI — text-embedding-004 (768-dim)              │
-│           Embeddings for semantic RAG retrieval                  │
+│           Embeddings for semantic RAG retrieval                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -138,28 +138,7 @@ DOCUMENT INGESTION                      QUERY TIME
                                    { answer, citations[],
                                      evidence, confidence,
                                      hallucination_risk }
-```
 
-### Frontend Structure
-
-```
-App.jsx
- └── AuthScreen.jsx           ← Supabase Auth (sign up / sign in)
- └── Dashboard.jsx
-      ├── Sidebar
-      │    ├── Reference Docs     ← Upload & index documents
-      │    ├── Questionnaire      ← Upload or paste questions
-      │    ├── Generate           ← Run AI pipeline
-      │    ├── Review & Export    ← Edit answers, download
-      │    ├── History            ← Past runs from Supabase
-      │    └── Analytics          ← Usage stats
-      └── lib/
-           ├── gemini.js          ← All API calls to backend
-           ├── db.js              ← Supabase CRUD operations
-           ├── fileParser.js      ← PDF / DOCX / TXT parsing
-           ├── exporters.js       ← TXT / CSV / DOCX export
-           └── dashboardUtils.js  ← Utility functions
-```
 
 ---
 
@@ -375,14 +354,15 @@ VaultIQ/
 
 ---
 
-## What I Would Improve With More Time
+## 🔮 What I'd Improve With More Time
 
-1. **Streaming answers** — stream each token via Server-Sent Events so the UI feels instant
-2. **Parallel generation with queue** — job queue with smart rate-limit retry for faster bulk generation
-3. **Document versioning** — flag answers that may be stale when reference docs are updated
-4. **Better confidence calibration** — use retrieval similarity scores instead of LLM self-reporting
-5. **Team workspaces** — shared document libraries across an organisation's users
-6. **Excel export** — one sheet per run with full formatting preserved
+- **Real-time answer streaming** — Stream responses token-by-token using Server-Sent Events so users see progress immediately instead of waiting for full completion.
+- **Parallel generation with queueing** — Add a background job queue with controlled concurrency and retry/backoff logic to accelerate bulk questionnaire runs while respecting model rate limits.
+- **Document versioning + staleness detection** — Track document revisions and automatically flag answers generated from outdated references after new uploads.
+- **Confidence scoring grounded in retrieval** — Replace model self-reported confidence with a calibrated score based on retrieval similarity, citation coverage, and answer consistency checks.
+- **Team workspaces and shared libraries** — Support organization-level workspaces where users can collaborate on shared document sets, runs, and exports with role-based access.
+- **Richer export support (Excel)** — Provide production-grade `.xlsx` exports with one sheet per run, preserved formatting, metadata, and citation traceability.
+
 
 ---
 
