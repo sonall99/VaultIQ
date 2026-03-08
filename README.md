@@ -23,7 +23,7 @@
 
 </p>
 
------
+---
 </div>
 
 ## Company Overview
@@ -32,13 +32,13 @@
 **Type:** B2B SaaS  
 **Clients:** Banks, payment processors, financial service providers
 
-FunBank is a fictional fintech infrastructure platform that helps banks and financial institutions securely manage sensitive financial data, automate compliance workflows, and monitor operational risk. The platform provides tools for encryption management, audit logging, regulatory reporting, and vendor risk assessment — used by 200+ enterprise clients across 14 countries.
+VaultIQ is a fictional fintech infrastructure platform that helps banks and financial institutions securely manage sensitive financial data, automate compliance workflows, and monitor operational risk. The platform provides tools for encryption management, audit logging, regulatory reporting, and vendor risk assessment — used by 200+ enterprise clients across 14 countries.
 
 ---
 
 ## What I Built
 
-VaultIQ- A full-stack AI application that automates the completion of vendor security questionnaires. Instead of a compliance officer spending hours manually answering the same questions across every client engagement, VaultIQ's tool:
+VaultIQ — A full-stack AI application that automates the completion of vendor security questionnaires. Instead of a compliance officer spending hours manually answering the same questions across every client engagement, VaultIQ's tool:
 
 1. Parses any uploaded questionnaire into individual questions
 2. Retrieves the most relevant chunks from reference documents using semantic search (RAG)
@@ -57,7 +57,7 @@ VaultIQ- A full-stack AI application that automates the completion of vendor sec
 │                        USER BROWSER                             │
 │                                                                 │
 │   ┌──────────────┐    ┌──────────────┐    ┌──────────────────┐  │
-│   │  Auth Screen │───▶│  Dashboard   │───▶│  Review & Export │ │
+│   │  Auth Screen │───▶│  Dashboard   │───▶│  Review & Export │  │
 │   │  (Supabase)  │    │  (React UI)  │    │  (Edit + DOCX)   │  │
 │   └──────────────┘    └──────┬───────┘    └──────────────────┘  │
 └──────────────────────────────│──────────────────────────────────┘
@@ -81,7 +81,7 @@ VaultIQ- A full-stack AI application that automates the completion of vendor sec
              │
              ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                 SUPABASE (PostgreSQL + pgvector)                │
+│                 SUPABASE (PostgreSQL + pgvector)                 │
 │                                                                 │
 │   document_chunks      profiles        questionnaires           │
 │   ┌──────────────┐    ┌──────────┐    ┌─────────────────────┐   │
@@ -138,7 +138,7 @@ DOCUMENT INGESTION                      QUERY TIME
                                    { answer, citations[],
                                      evidence, confidence,
                                      hallucination_risk }
-
+```
 
 ---
 
@@ -226,6 +226,29 @@ DOCUMENT INGESTION                      QUERY TIME
 | File Parsing | PyMuPDF + python-docx | Server-side PDF and DOCX parsing |
 | Frontend Deploy | Vercel | Zero-config deployment from GitHub |
 | Backend Deploy | Render | Docker-free Python hosting |
+
+---
+
+## Trade-offs
+
+| Decision | Trade-off |
+|---|---|
+| pgvector over Pinecone | No extra paid service, runs inside existing Postgres — less scalable at very high document counts |
+| Groq over OpenAI | Free tier with fast inference — requires stricter JSON prompting for consistent output |
+| Sequential question generation | Avoids rate limits on free tier — 10 questions take ~20s instead of ~3s with parallelism |
+| Client-side file parsing | Reduces backend load — large PDFs can be slow in the browser |
+| Hardcoded demo documents | Instant demo without manual uploads  |
+
+---
+
+## 🔮 What I'd Improve With More Time
+
+- **Real-time answer streaming** — Stream responses token-by-token using Server-Sent Events so users see progress immediately instead of waiting for full completion.
+- **Parallel generation with queueing** — Add a background job queue with controlled concurrency and retry/backoff logic to accelerate bulk questionnaire runs while respecting model rate limits.
+- **Document versioning + staleness detection** — Track document revisions and automatically flag answers generated from outdated references after new uploads.
+- **Confidence scoring grounded in retrieval** — Replace model self-reported confidence with a calibrated score based on retrieval similarity, citation coverage, and answer consistency checks.
+- **Team workspaces and shared libraries** — Support organization-level workspaces where users can collaborate on shared document sets, runs, and exports with role-based access.
+- **Richer export support (Excel)** — Provide production-grade `.xlsx` exports with one sheet per run, preserved formatting, metadata, and citation traceability.
 
 ---
 
@@ -339,34 +362,6 @@ VaultIQ/
 - The app is fully multi-user via Supabase Auth but demo data is shared across sessions
 
 > **Note:** The backend is hosted on Render's free tier and may take 30–60 seconds to wake up on first visit. The app will automatically detect when the backend is online and begin indexing documents without requiring a manual refresh.
-
----
-
-## Trade-offs
-
-| Decision | Trade-off |
-|---|---|
-| pgvector over Pinecone | No extra paid service, runs inside existing Postgres — less scalable at very high document counts |
-| Groq over OpenAI | Free tier with fast inference — requires stricter JSON prompting for consistent output |
-| Sequential question generation | Avoids rate limits on free tier — 10 questions take ~20s instead of ~3s with parallelism |
-| Client-side file parsing | Reduces backend load — large PDFs can be slow in the browser |
-| Hardcoded demo documents | Instant demo without manual uploads — less flexible for fully custom testing |
-
----
-
-## 🔮 What I'd Improve With More Time
-
-- **Real-time answer streaming** — Stream responses token-by-token using Server-Sent Events so users see progress immediately instead of waiting for full completion.
-- **Parallel generation with queueing** — Add a background job queue with controlled concurrency and retry/backoff logic to accelerate bulk questionnaire runs while respecting model rate limits.
-- **Document versioning + staleness detection** — Track document revisions and automatically flag answers generated from outdated references after new uploads.
-- **Confidence scoring grounded in retrieval** — Replace model self-reported confidence with a calibrated score based on retrieval similarity, citation coverage, and answer consistency checks.
-- **Team workspaces and shared libraries** — Support organization-level workspaces where users can collaborate on shared document sets, runs, and exports with role-based access.
-- **Richer export support (Excel)** — Provide production-grade `.xlsx` exports with one sheet per run, preserved formatting, metadata, and citation traceability.
-
-
----
-
-
 
 ---
 
