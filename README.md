@@ -1,3 +1,20 @@
+<div align="center">
+
+# 🏦 VaultIQ
+### AI-Powered Vendor Questionnaire Answering Tool
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-FF6B35?style=for-the-badge&logo=groq&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
+
+**Upload a questionnaire → AI answers from your reference docs → Export in seconds**
+
+> 🏦 **Fictional Company Context:** VaultIQ is an imaginary FinTech company that helps banks store and manage sensitive financial data securely. It is used here as the demo scenario — the reference documents, sample questionnaire, and AI answers are all based on VaultIQ as a pretend vendor being evaluated by a bank.
+
+[🚀 Live Demo](https://vault-iq-sand.vercel.app) • [📡 API Docs](https://vaultiq-1-j7qn.onrender.com/docs) • [💻 GitHub](https://github.com/sonall99/VaultIQ)
 # VaultIQ — AI-Powered Questionnaire Answering Tool
 
 > AI-powered vendor questionnaire automation for FinTech compliance teams.  
