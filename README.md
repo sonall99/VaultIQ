@@ -362,6 +362,3 @@ VaultIQ/
 
 > **Note:** The backend is hosted on Render's free tier and may take 30–60 seconds to wake up on first visit. The app will automatically detect when the backend is online and begin indexing documents without requiring a manual refresh.
 
----
-
-Built for the **Almabase GTM Engineering Internship** assignment by **Sonal Singh**
