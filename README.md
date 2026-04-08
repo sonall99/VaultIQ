@@ -26,15 +26,6 @@
 ---
 </div>
 
-## Company Overview
-
-**Industry:** FinTech / Financial Infrastructure  
-**Type:** B2B SaaS  
-**Clients:** Banks, payment processors, financial service providers
-
-NovaBank is a fictional fintech infrastructure platform that helps banks and financial institutions securely manage sensitive financial data, automate compliance workflows, and monitor operational risk. The platform provides tools for encryption management, audit logging, regulatory reporting, and vendor risk assessment — used by 200+ enterprise clients across 14 countries.
-
----
 
 ## What I Built
 
