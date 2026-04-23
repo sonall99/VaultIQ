@@ -29,7 +29,7 @@
 
 ## What I Built
 
-**VaultIQ — A full-stack production-grade RAG (Retrieval-Augmented Generation) application** that automates the completion of vendor security questionnaires. Instead of a compliance officer spending hours manually answering the same questions across every client engagement, VaultIQ's tool:
+**VaultIQ — A full-stack production-grade RAG (Retrieval-Augmented Generation) application** that automates the completion of vendor security questionnaires. Instead of a compliance officer spending hours manually answering the same questions across every client engagement:
 
 1. **Embeds** all company reference documents into a vector store at ingestion time
 2. **Retrieves** the most semantically relevant chunks at query time using cosine similarity
